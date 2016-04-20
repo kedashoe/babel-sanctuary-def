@@ -1,0 +1,15 @@
+{
+  "name": "babel-sanctuary-def",
+  "description": "reads hindley-milner signature comments and converts associated function to sanctuary-def function",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "src/babel-sanctuary-def.js",
+  "scripts": {},
+  "dependencies": {
+    "hindley-milner-parser-js": "git+https://github.com/kedashoe/hindley-milner-parser-js.git"
+  },
+  "devDependencies": {
+    "babel-core": "6.7.4",
+    "tape": "4.5.1"
+  }
+}
