@@ -6,7 +6,8 @@
   "main": "src/babel-sanctuary-def.js",
   "scripts": {},
   "dependencies": {
-    "hindley-milner-parser-js": "git+https://github.com/kedashoe/hindley-milner-parser-js.git"
+    "hindley-milner-parser-js": "git+https://github.com/kedashoe/hindley-milner-parser-js.git",
+    "sanctuary-def": "0.5.0"
   },
   "devDependencies": {
     "babel-core": "6.7.4",

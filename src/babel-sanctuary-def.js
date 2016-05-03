@@ -1,3 +1,4 @@
+var $ = require('sanctuary-def');
 var HMP = require('hindley-milner-parser-js');
 
 var map = function map(f, before) {
@@ -21,7 +22,8 @@ var isNullaryType = function isNullaryType(type) {
 };
 
 var isSanctuaryDefType = function isSanctuaryDefType(type) {
-  return true;
+  var text = type.text;
+  return text in $ || text === 'Maybe' || text === 'Either';
 };
 
 // global to help us generate nodes without having to pass `t` around everywhere

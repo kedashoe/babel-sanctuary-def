@@ -1,15 +1,15 @@
 //  foo :: Integer -> Integer
-var foo = def("foo", {}, [$.Integer, $.Integer], function (x) {
+var foo = def('foo', {}, [$.Integer, $.Integer], function (x) {
   return x + 10;
 });
 
 //    concat :: (Semigroup a, Flam a) => a -> a -> a
-const concat = def("concat", {
+const concat = def('concat', {
   a: [Semigroup, Flam]
 }, [a, a, a], (x, y) => x.concat(y));
 
 //    head :: [a] -> Maybe a
-const head = def("head", {}, [$.Array(a), $.Maybe(a)], x => x.length === 0 ? Nothing() : Just(x[0]));
+const head = def('head', {}, [$.Array(a), $.Maybe(a)], x => x.length === 0 ? Nothing() : Just(x[0]));
 
 //# chain :: (b -> Either a c) -> Either a b -> Either a c
 //.
@@ -31,4 +31,8 @@ const head = def("head", {}, [$.Array(a), $.Maybe(a)], x => x.length === 0 ? Not
 //. > S.Right(25).chain(sqrt)
 //. Right(5)
 //. ```
-const chain = def("chain", {}, [$.Function, $.Either(a, b), $.Either(a, c)], (either, f) => f(either.value));
+const chain = def('chain', {}, [$.Function, $.Either(a, b), $.Either(a, c)], (either, f) => f(either.value));
+
+const Fruit = $.EnumType(['banana', 'apple', 'mango']);
+//    obtainFruit :: Integer -> Fruit -> String
+const obtainFruit = def('obtainFruit', {}, [$.Integer, Fruit, $.String], (x, y) => `i have ${ x } fruits of type ${ y }`);

@@ -30,3 +30,8 @@ const head = x => x.length === 0 ? Nothing() : Just(x[0]);
 //. Right(5)
 //. ```
 const chain = (either, f) => f(either.value);
+
+const Fruit = $.EnumType(['banana', 'apple', 'mango']);
+//    obtainFruit :: Integer -> Fruit -> String
+const obtainFruit = (x, y) => `i have ${x} fruits of type ${y}`;
+
