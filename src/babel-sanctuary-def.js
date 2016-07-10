@@ -17,6 +17,25 @@ var objToList = function objToList(f, obj) {
   return list;
 };
 
+var groupBy = function groupBy(f, list) {
+  var obj = {};
+  for (var i = 0; i < list.length; ++i) {
+    var el = list[i];
+    var val = f(el);
+    if (!(val in obj)) {
+      obj[val] = [];
+    }
+    obj[val].push(el);
+  }
+  return obj;
+};
+
+var prop = function prop(key) {
+  return function _prop(obj) {
+    return obj[key];
+  };
+};
+
 var isNullaryType = function isNullaryType(type) {
   return type.children.length === 0;
 };
@@ -52,10 +71,12 @@ function genInit(t, opts) {
     },
     
     constraints: function(constraints) {
-      return t.objectExpression(objToList(Gen.constraint, constraints));
+      var byType = groupBy(prop('type'), constraints);
+      return t.objectExpression(objToList(Gen.constraint, byType));
     },
     
-    constraint: function(typevar, typeClasses) {
+    constraint: function(typevar, constraintInfo) {
+      var typeClasses = map(prop('typeclass'), constraintInfo);
       return t.objectProperty(
         Gen.id(typevar),
         t.arrayExpression(map(Gen.id, typeClasses))
